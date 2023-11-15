@@ -1,0 +1,8 @@
+ALTER TABLE ${prefix}ContentFile
+    ADD COLUMN rec_date DATETIME NULL DEFAULT NULL;
+ALTER TABLE ${prefix}ContentFile
+    ADD COLUMN rec_user VARCHAR(128) NULL DEFAULT NULL;
+ALTER TABLE ${prefix}ContentFile
+    ADD COLUMN chg_date DATETIME NULL DEFAULT NULL;
+ALTER TABLE ${prefix}ContentFile
+    ADD COLUMN chg_user VARCHAR(128) NULL DEFAULT NULL;

@@ -1,0 +1,2 @@
+ALTER TABLE ${prefix}ContentFile
+    ADD COLUMN user_id BIGINT(20) NULL DEFAULT NULL;
