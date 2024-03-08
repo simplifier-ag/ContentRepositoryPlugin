@@ -1,20 +1,38 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Simplifier Content Repo Plugin
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Deployment
+deployment is basically the same as described in the [Simplifier Pdf Plugin](https://github.com/simplifier-ag/PdfPlugin)
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+there is only on additions step to be done before building and testing:
+### Adding the Oracle JDBC Driver
+- in the source tree: create a lib directory
+- then copy the Oracle JDBC driver version 23.3 to this directory
+- the sourcetree then looks like this:
+```
+├── build
+│   └── artifacts
+│       ├── assets
+│       │   ├── contentRepoPlugin.arg
+│       │   └── contentRepoPlugin.conf
+│       ├── build.sh
+│       ├── Dockerfile
+│       └── setup.sh
+├── build.sbt
+├── lib
+│   └── ojdbc8.jar
+├── LICENSE
+├── project
+├── README.md
+├── src
+│   ├── main   ...
+│   └── test   ...
+└── version.sh
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+```
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## Manual Installation
+
+Copy the file [settings.conf.dist](./src/main/resources/settings.conf.dist) to your installation path and edit the values as needed.
+When launching the jar, the config file must be given as a commandline argument.
+
+Then set ```fileSystemRepository``` and ```database``` according to your local setup.
