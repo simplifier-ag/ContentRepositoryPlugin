@@ -1,0 +1,3318 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "termsOfService" : ""
+  },
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "Download"
+  }, {
+    "name" : "File"
+  }, {
+    "name" : "Folder"
+  }, {
+    "name" : "Repository"
+  }, {
+    "name" : "Mime Mapping"
+  }, {
+    "name" : "Permission file"
+  } ],
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/client/2.0/pluginSlot/contentRepoPlugin/download/{fileId}" : {
+      "post" : {
+        "tags" : [ "Download" ],
+        "summary" : "Download a file from repository.",
+        "description" : "",
+        "operationId" : "download",
+        "parameters" : [ {
+          "name" : "fileId",
+          "in" : "query",
+          "description" : "The id of the requested file.",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PublicFileData"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileList" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "List all files with missing folder id.",
+        "description" : "",
+        "operationId" : "listFilesWithoutFolderId",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFileListRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFileListResponseAll"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileGet" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "Get a file with repository provider = 'FileSystem'.",
+        "description" : "",
+        "operationId" : "getFile",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFileGetRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFileGetResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileEdit" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "Edit a file with repository provider = 'FileSystem'.",
+        "description" : "",
+        "operationId" : "editFile",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFileEditRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFileEditResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileGetMetadata" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "Get metadata of a file with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "getFileMetadata",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClearContentFileGetRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentFileGetMetadataResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileDelete" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "Delete a file with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "deleteFile",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClearContentFileDeleteRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFileDeleteResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileFind" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "Find a file with repository provider = 'FileSystem'.",
+        "description" : "",
+        "operationId" : "findFile",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFileFindRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFileFindResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileAdd" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "Add new file with repository provider = 'FileSystem'.",
+        "description" : "",
+        "operationId" : "addFile",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFileAddRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFileAddResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFileGetMetadataBatched" : {
+      "post" : {
+        "tags" : [ "File" ],
+        "summary" : "Get metadata of files with repository provider = 'FileSystem'.",
+        "description" : "",
+        "operationId" : "getMetadataBatched",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFileGetMetadataBatchedRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/GetFileMetaBatchResponseFileProvider"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFolderList" : {
+      "post" : {
+        "tags" : [ "Folder" ],
+        "summary" : "List all folders with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "listFolders",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClearContentFolderListRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentFolderListResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFolderAdd" : {
+      "post" : {
+        "tags" : [ "Folder" ],
+        "summary" : "Add new folder with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "addFolder",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClearContentFolderAddRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentFolderAddResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFolderGet" : {
+      "post" : {
+        "tags" : [ "Folder" ],
+        "summary" : "Get a folder with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "getFolder",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClearContentFolderGetRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentFolderGetResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFolderEdit" : {
+      "post" : {
+        "tags" : [ "Folder" ],
+        "summary" : "Edit a folder with repository provider = 'FileSystem'.",
+        "description" : "",
+        "operationId" : "editFolder",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFolderEditRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFolderEditResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFolderDelete" : {
+      "post" : {
+        "tags" : [ "Folder" ],
+        "summary" : "Delete a folder with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "deleteFolder",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClearContentFolderDeleteRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFolderDeleteResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFolderFind" : {
+      "post" : {
+        "tags" : [ "Folder" ],
+        "summary" : "Find a folder with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "findFolder",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClearContentFolderFindRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentFolderFindResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentFolderAddIfNotExisting" : {
+      "post" : {
+        "tags" : [ "Folder" ],
+        "summary" : "Add new folder with repository provider = 'FileSystem'. Folder is added if not already existing.",
+        "description" : "",
+        "operationId" : "addFolderIfNotExisting",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentFoldersAddRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentFoldersAddResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentRepositoryList" : {
+      "post" : {
+        "tags" : [ "Repository" ],
+        "summary" : "List all repositories with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "listClearRepositories",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentRepoListRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentRepoListResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentRepositoryAdd" : {
+      "post" : {
+        "tags" : [ "Repository" ],
+        "summary" : "Add new repository.",
+        "description" : "",
+        "operationId" : "addRepository",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentRepoAddRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentRepoAddResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentRepositoryFind" : {
+      "post" : {
+        "tags" : [ "Repository" ],
+        "summary" : "Find a repository with repository provider = 'ClearFileSystem'.",
+        "description" : "",
+        "operationId" : "findClearRepository",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentRepoFindRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentRepoFindResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentRepositoryEdit" : {
+      "post" : {
+        "tags" : [ "Repository" ],
+        "summary" : "Edit a repository.",
+        "description" : "",
+        "operationId" : "editRepository",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentRepoEditRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentRepoEditResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentRepositoryGet" : {
+      "post" : {
+        "tags" : [ "Repository" ],
+        "summary" : "Get a repository.",
+        "description" : "",
+        "operationId" : "getClearRepository",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentRepoGetRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClearContentRepoGetResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/contentRepositoryDelete" : {
+      "post" : {
+        "tags" : [ "Repository" ],
+        "summary" : "Delete a repository.",
+        "description" : "",
+        "operationId" : "deleteRepository",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ContentRepoDeleteRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ContentRepoDeleteResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/mimeMappingGet" : {
+      "post" : {
+        "tags" : [ "Mime Mapping" ],
+        "summary" : "Query a mime mapping.",
+        "description" : "",
+        "operationId" : "getMimeMappingSlot",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MimeMappingGetRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MimeMappingGetResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/mimeMappingEdit" : {
+      "post" : {
+        "tags" : [ "Mime Mapping" ],
+        "summary" : "Edit a mime mapping.",
+        "description" : "",
+        "operationId" : "editMimeMappingSlot",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MimeMappingEditRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MimeMappingEditResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/mimeMappingDelete" : {
+      "post" : {
+        "tags" : [ "Mime Mapping" ],
+        "summary" : "Delete a mime mapping.",
+        "description" : "",
+        "operationId" : "deleteMimeMappingSlot",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MimeMappingDeleteRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MimeMappingDeleteResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/mimeMappingList" : {
+      "post" : {
+        "tags" : [ "Mime Mapping" ],
+        "summary" : "List all mime mappings.",
+        "description" : "",
+        "operationId" : "listMimeMappingsSlot",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MimeMappingListResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/contentRepoPlugin/mimeMappingAdd" : {
+      "post" : {
+        "tags" : [ "Mime Mapping" ],
+        "summary" : "Add a new mime type.",
+        "description" : "",
+        "operationId" : "addMimeMappingSlot",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MimeMappingAddRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MimeMappingAddResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/uploadPermissionFile" : {
+      "post" : {
+        "tags" : [ "Permission file" ],
+        "summary" : "Upload the permission file.",
+        "description" : "",
+        "operationId" : "uploadPermissionFile",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PluginPermissionFile"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/UploadPermissionFileResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/client/2.0/pluginSlot/downloadPermissionFile" : {
+      "post" : {
+        "tags" : [ "Permission file" ],
+        "summary" : "Download the permission file.",
+        "description" : "",
+        "operationId" : "downloadPermissionFile",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DownloadPermissionFileRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DownloadPermissionFileResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          }
+        },
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "Binary" : {
+      "type" : "object",
+      "required" : [ "charsetOption", "mediaType" ],
+      "properties" : {
+        "mediaType" : {
+          "$ref" : "#/definitions/Binary"
+        },
+        "charsetOption" : {
+          "$ref" : "#/definitions/HttpCharset"
+        }
+      }
+    },
+    "Compressibility" : {
+      "type" : "object",
+      "required" : [ "compressible" ],
+      "properties" : {
+        "compressible" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "HttpCharset" : {
+      "type" : "object",
+      "required" : [ "aliases" ],
+      "properties" : {
+        "aliases" : {
+          "$ref" : "#/definitions/IterableString"
+        }
+      }
+    },
+    "Iterable" : {
+      "type" : "object"
+    },
+    "IterableString" : {
+      "type" : "object"
+    },
+    "PublicFileData" : {
+      "type" : "object",
+      "required" : [ "contentType", "data", "fileName" ],
+      "properties" : {
+        "fileName" : {
+          "type" : "string"
+        },
+        "data" : {
+          "$ref" : "#/definitions/StreamSource"
+        },
+        "contentType" : {
+          "$ref" : "#/definitions/Binary"
+        }
+      }
+    },
+    "StreamSource" : {
+      "type" : "object"
+    },
+    "ContentFileListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "files" : {
+          "type" : "array",
+          "description" : "The list of queried files.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFileListResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFileListResponseItem" : {
+      "type" : "object",
+      "required" : [ "description", "folderId", "id", "length", "mimeType", "name", "permissionObjectID", "permissionObjectType", "securitySchemeID", "statusID", "statusSchemeID", "url" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "statusSchemeID" : {
+          "type" : "string"
+        },
+        "statusID" : {
+          "type" : "string"
+        },
+        "securitySchemeID" : {
+          "type" : "string"
+        },
+        "permissionObjectType" : {
+          "type" : "string"
+        },
+        "permissionObjectID" : {
+          "type" : "string"
+        },
+        "folderId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "recUser" : {
+          "type" : "string"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgUser" : {
+          "type" : "string"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "MimeMappingReturn" : {
+      "type" : "object",
+      "properties" : {
+        "extension" : {
+          "type" : "string",
+          "description" : "The extension of the mime mapping."
+        },
+        "mimeType" : {
+          "type" : "string",
+          "description" : "The name of the mime type."
+        }
+      }
+    },
+    "RestMessage" : {
+      "type" : "object",
+      "properties" : {
+        "msgId" : {
+          "type" : "string",
+          "description" : "The message id."
+        },
+        "msgType" : {
+          "type" : "string",
+          "description" : "The message type."
+        },
+        "msgText" : {
+          "type" : "string",
+          "description" : "The message text."
+        }
+      }
+    },
+    "ContentFileListRequest" : {
+      "type" : "object",
+      "properties" : {
+        "folderId" : {
+          "type" : "object"
+        }
+      }
+    },
+    "ClearContentFileListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "files" : {
+          "type" : "array",
+          "description" : "The list of queried files.",
+          "items" : {
+            "$ref" : "#/definitions/ClearContentFileListResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFileListResponseItem" : {
+      "type" : "object",
+      "required" : [ "fileName", "length", "mimeType", "url" ],
+      "properties" : {
+        "fileName" : {
+          "type" : "string"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "ClearContentFileListRequest" : {
+      "type" : "object",
+      "required" : [ "contentId" ],
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "folderPath" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ClearContentFileGetResponse" : {
+      "type" : "object",
+      "required" : [ "data", "filePath", "length", "message", "mimeType", "success", "url" ],
+      "properties" : {
+        "filePath" : {
+          "type" : "string"
+        },
+        "data" : {
+          "type" : "string"
+        },
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ClearContentFileGetRequest" : {
+      "type" : "object",
+      "required" : [ "contentId", "filePath" ],
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "filePath" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContentFileGetResponse" : {
+      "type" : "object",
+      "required" : [ "data", "description", "folderId", "id", "length", "message", "mimeType", "name", "permissionObjectID", "permissionObjectType", "securitySchemeID", "statusID", "statusSchemeID", "success", "url" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "folderId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "statusSchemeID" : {
+          "type" : "string"
+        },
+        "statusID" : {
+          "type" : "string"
+        },
+        "securitySchemeID" : {
+          "type" : "string"
+        },
+        "permissionObjectType" : {
+          "type" : "string"
+        },
+        "permissionObjectID" : {
+          "type" : "string"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "data" : {
+          "type" : "string"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "recUser" : {
+          "type" : "string"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgUser" : {
+          "type" : "string"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ContentFileGetRequest" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ContentFileEditResponse" : {
+      "type" : "object",
+      "required" : [ "message", "success" ],
+      "properties" : {
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ClearContentFileEditRequest" : {
+      "type" : "object",
+      "required" : [ "contentId", "destFilePath", "sourceFilePath" ],
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sourceFilePath" : {
+          "type" : "string"
+        },
+        "destFilePath" : {
+          "type" : "string"
+        },
+        "forceOverwrite" : {
+          "type" : "object"
+        }
+      }
+    },
+    "ContentFileEditRequest" : {
+      "type" : "object",
+      "required" : [ "id", "name", "permissionObjectID", "permissionObjectType", "securitySchemeID" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "securitySchemeID" : {
+          "type" : "string"
+        },
+        "permissionObjectType" : {
+          "type" : "string"
+        },
+        "permissionObjectID" : {
+          "type" : "string"
+        },
+        "data" : {
+          "type" : "string"
+        },
+        "uploadSession" : {
+          "type" : "string"
+        },
+        "copyFrom" : {
+          "type" : "object"
+        }
+      }
+    },
+    "ContentFileGetMetadataResponse" : {
+      "type" : "object",
+      "required" : [ "description", "folderId", "id", "length", "message", "mimeType", "name", "permissionObjectID", "permissionObjectType", "securitySchemeID", "statusID", "statusSchemeID", "success", "url" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "folderId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "statusSchemeID" : {
+          "type" : "string"
+        },
+        "statusID" : {
+          "type" : "string"
+        },
+        "securitySchemeID" : {
+          "type" : "string"
+        },
+        "permissionObjectType" : {
+          "type" : "string"
+        },
+        "permissionObjectID" : {
+          "type" : "string"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "recUser" : {
+          "type" : "string"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgUser" : {
+          "type" : "string"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ClearContentFileGetMetadataResponse" : {
+      "type" : "object",
+      "required" : [ "filePath", "length", "message", "mimeType", "success", "url" ],
+      "properties" : {
+        "filePath" : {
+          "type" : "string"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ContentFileDeleteResponse" : {
+      "type" : "object",
+      "required" : [ "message", "success" ],
+      "properties" : {
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ContentFileDeleteRequest" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ClearContentFileDeleteRequest" : {
+      "type" : "object",
+      "required" : [ "contentId", "filePath" ],
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "filePath" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ClearContentFileFindResponse" : {
+      "type" : "object",
+      "properties" : {
+        "files" : {
+          "type" : "array",
+          "description" : "The list of queried files.",
+          "items" : {
+            "$ref" : "#/definitions/ClearContentFileFindResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFileFindResponseItem" : {
+      "type" : "object",
+      "required" : [ "filePath", "length", "mimeType", "url" ],
+      "properties" : {
+        "filePath" : {
+          "type" : "string"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "ClearContentFileFindRequest" : {
+      "type" : "object",
+      "required" : [ "contentId", "fileName" ],
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "folderPath" : {
+          "type" : "string"
+        },
+        "fileName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContentFileFindResponse" : {
+      "type" : "object",
+      "properties" : {
+        "files" : {
+          "type" : "array",
+          "description" : "The list of queried files.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFileFindResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFileFindResponseItem" : {
+      "type" : "object",
+      "required" : [ "description", "folderId", "id", "length", "mimeType", "name", "permissionObjectID", "permissionObjectType", "securitySchemeID", "statusID", "statusSchemeID", "url" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "statusSchemeID" : {
+          "type" : "string"
+        },
+        "statusID" : {
+          "type" : "string"
+        },
+        "securitySchemeID" : {
+          "type" : "string"
+        },
+        "permissionObjectType" : {
+          "type" : "string"
+        },
+        "permissionObjectID" : {
+          "type" : "string"
+        },
+        "folderId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "recUser" : {
+          "type" : "string"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgUser" : {
+          "type" : "string"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "ContentFileFindRequest" : {
+      "type" : "object",
+      "required" : [ "folderId", "name" ],
+      "properties" : {
+        "folderId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ClearContentFileAddResponse" : {
+      "type" : "object",
+      "required" : [ "filePath", "message", "success" ],
+      "properties" : {
+        "filePath" : {
+          "type" : "string"
+        },
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ClearContentFileAddRequest" : {
+      "type" : "object",
+      "required" : [ "contentId", "fileName", "folderPath" ],
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "folderPath" : {
+          "type" : "string"
+        },
+        "fileName" : {
+          "type" : "string"
+        },
+        "data" : {
+          "type" : "string"
+        },
+        "uploadSession" : {
+          "type" : "string"
+        },
+        "copyFrom" : {
+          "type" : "string"
+        },
+        "forceOverwrite" : {
+          "type" : "object"
+        }
+      }
+    },
+    "ContentFileAddResponse" : {
+      "type" : "object",
+      "required" : [ "id", "message", "name", "success" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "message" : {
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ContentFileAddRequest" : {
+      "type" : "object",
+      "required" : [ "folderId", "name", "permissionObjectID", "permissionObjectType", "securitySchemeID" ],
+      "properties" : {
+        "folderId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "securitySchemeID" : {
+          "type" : "string"
+        },
+        "permissionObjectType" : {
+          "type" : "string"
+        },
+        "permissionObjectID" : {
+          "type" : "string"
+        },
+        "data" : {
+          "type" : "string"
+        },
+        "uploadSession" : {
+          "type" : "string"
+        },
+        "copyFrom" : {
+          "type" : "object"
+        }
+      }
+    },
+    "ClearContentFileGetMetadataBatchedResponseItem" : {
+      "type" : "object",
+      "required" : [ "chgDate", "filePath", "length", "mimeType", "recDate", "recUser", "url" ],
+      "properties" : {
+        "filePath" : {
+          "type" : "string"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "recUser" : {
+          "type" : "string"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "GetFileMetaBatchResponseClearFileProvider" : {
+      "type" : "object",
+      "properties" : {
+        "fileMetadata" : {
+          "type" : "array",
+          "description" : "The meta data of the queried files.",
+          "items" : {
+            "$ref" : "#/definitions/ClearContentFileGetMetadataBatchedResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFileGetMetadataBatchedRequest" : {
+      "type" : "object",
+      "required" : [ "contentId", "files" ],
+      "properties" : {
+        "files" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ClearFileInformation"
+          }
+        },
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ClearFileInformation" : {
+      "type" : "object",
+      "required" : [ "filePath" ],
+      "properties" : {
+        "filePath" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ContentFileGetMetadataBatchedResponseItem" : {
+      "type" : "object",
+      "required" : [ "description", "folderId", "id", "mimeType", "name", "permissionObjectID", "permissionObjectType", "securitySchemeID", "statusID", "statusSchemeID", "url" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "folderId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "statusSchemeID" : {
+          "type" : "string"
+        },
+        "statusID" : {
+          "type" : "string"
+        },
+        "securitySchemeID" : {
+          "type" : "string"
+        },
+        "permissionObjectType" : {
+          "type" : "string"
+        },
+        "permissionObjectID" : {
+          "type" : "string"
+        },
+        "mimeType" : {
+          "$ref" : "#/definitions/MimeMappingReturn"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "urlWithToken" : {
+          "type" : "string"
+        },
+        "recDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "recUser" : {
+          "type" : "string"
+        },
+        "chgDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "chgUser" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GetFileMetaBatchResponseFileProvider" : {
+      "type" : "object",
+      "properties" : {
+        "fileMetadata" : {
+          "type" : "array",
+          "description" : "The meta data of the queried files.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFileGetMetadataBatchedResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFileGetMetadataBatchedRequest" : {
+      "type" : "object",
+      "required" : [ "contentId", "files" ],
+      "properties" : {
+        "files" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/FileInformation"
+          }
+        },
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "FileInformation" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ContentFileListResponseAll" : {
+      "type" : "object",
+      "properties" : {
+        "repositories" : {
+          "type" : "array",
+          "description" : "The list of queried files.",
+          "items" : {
+            "$ref" : "#/definitions/Repository"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFolderGetResponseForAll" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried folder."
+        },
+        "parentFolderId" : {
+          "type" : "object",
+          "description" : "The parent folder id of the queried folder."
+        },
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository id of the queried folder."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried folder."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried folder."
+        },
+        "statusSchemeID" : {
+          "type" : "string",
+          "description" : "The status scheme id of the queried folder."
+        },
+        "statusID" : {
+          "type" : "string",
+          "description" : "The status id of the queried folder."
+        },
+        "securitySchemeID" : {
+          "type" : "string",
+          "description" : "The security scheme id of the queried folder."
+        },
+        "currentStatus" : {
+          "type" : "string",
+          "description" : "The status of the queried folder."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried folder."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried folder."
+        }
+      }
+    },
+    "ContentRepoListResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried repository."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried repository."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried repository."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried repository."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried repository."
+        },
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the queried repository."
+        },
+        "config" : {
+          "type" : "object",
+          "description" : "The config of the queried repository.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "Repository" : {
+      "type" : "object",
+      "properties" : {
+        "data" : {
+          "description" : "The queried repository.",
+          "$ref" : "#/definitions/ContentRepoListResponseItem"
+        },
+        "folders" : {
+          "type" : "array",
+          "description" : "The list of all queried folders.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFolderGetResponseForAll"
+          }
+        }
+      }
+    },
+    "ContentFolderListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "folders" : {
+          "type" : "array",
+          "description" : "The list of queried folders.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFolderListResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFolderListResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried folder."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried folder."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried folder."
+        },
+        "statusSchemeID" : {
+          "type" : "string",
+          "description" : "The status scheme id of the queried folder."
+        },
+        "statusID" : {
+          "type" : "string",
+          "description" : "The status id of the queried folder."
+        },
+        "securitySchemeID" : {
+          "type" : "string",
+          "description" : "The security scheme id of the queried folder."
+        },
+        "currentStatus" : {
+          "type" : "string",
+          "description" : "The current status of the queried folder."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried folder."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried folder."
+        }
+      }
+    },
+    "ContentFolderListRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "object",
+          "description" : "The repository id used to identify all folders to return."
+        },
+        "parentFolderId" : {
+          "type" : "object",
+          "description" : "The parent folder id used to identify all folders to return."
+        }
+      }
+    },
+    "ClearContentFolderListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "folders" : {
+          "type" : "array",
+          "description" : "The list of queried folders.",
+          "items" : {
+            "$ref" : "#/definitions/ClearContentFolderListResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFolderListResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "folderName" : {
+          "type" : "string",
+          "description" : "The queried folder."
+        }
+      }
+    },
+    "ClearContentFolderListRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository id used to identify all folders to return."
+        },
+        "parentFolderPath" : {
+          "type" : "string",
+          "description" : "The parent folder path used to identify all folders to return."
+        }
+      }
+    },
+    "ContentFolderAddResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the created folder."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the created folder."
+        },
+        "folderDescription" : {
+          "type" : "string",
+          "description" : "The description of the created folder."
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFolderAddRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the repository folder."
+        },
+        "parentFolderId" : {
+          "type" : "object",
+          "description" : "The id of the parent folder."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the new folder."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the new folder."
+        },
+        "securitySchemeID" : {
+          "type" : "string",
+          "description" : "The security scheme id of the new folder."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the new folder."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the new folder."
+        }
+      }
+    },
+    "ClearContentFolderAddResponse" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "string",
+          "description" : "The path to the created folder."
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFolderAddRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository id of the new folder."
+        },
+        "parentFolderPath" : {
+          "type" : "string",
+          "description" : "The path to the parent folder."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the new folder to create."
+        }
+      }
+    },
+    "ContentFolderGetResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried folder."
+        },
+        "parentFolderId" : {
+          "type" : "object",
+          "description" : "The parent folder id of the queried folder."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried folder."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried folder."
+        },
+        "statusSchemeID" : {
+          "type" : "string",
+          "description" : "The status scheme id of the queried folder."
+        },
+        "statusID" : {
+          "type" : "string",
+          "description" : "The status id of the queried folder."
+        },
+        "securitySchemeID" : {
+          "type" : "string",
+          "description" : "The security scheme id of the queried folder."
+        },
+        "currentStatus" : {
+          "type" : "string",
+          "description" : "The status of the queried folder."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried folder."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried folder."
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFolderGetRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the requested folder."
+        }
+      }
+    },
+    "ClearContentFolderGetResponse" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "string",
+          "description" : "The path to the queried folder."
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFolderGetRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository if of the queried folder."
+        },
+        "folderPath" : {
+          "type" : "string",
+          "description" : "The folder path to the requested folder."
+        }
+      }
+    },
+    "ContentFolderEditResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFolderEditRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the folder to edit."
+        },
+        "sourceFolderPath" : {
+          "type" : "string",
+          "description" : "The source path of the folder to edit."
+        },
+        "destFolderPath" : {
+          "type" : "string",
+          "description" : "The target path of the folder to edit."
+        }
+      }
+    },
+    "ContentFolderEditRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the folder to edit."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the folder to edit."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the folder to edit."
+        },
+        "securitySchemeID" : {
+          "type" : "string",
+          "description" : "The security scheme id of the folder to edit."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the folder to edit."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the folder to edit."
+        }
+      }
+    },
+    "ContentFolderDeleteResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFolderDeleteRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the folder to delete."
+        }
+      }
+    },
+    "ClearContentFolderDeleteRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository id of the folder to delete."
+        },
+        "folderPath" : {
+          "type" : "string",
+          "description" : "The path of the folder to delete inside the repository."
+        },
+        "forceDelete" : {
+          "type" : "object",
+          "description" : "The flag indicating if the file is forced to delete. If true, the directory is deleted recursively including all sub folders."
+        }
+      }
+    },
+    "ContentFolderFindResponse" : {
+      "type" : "object",
+      "properties" : {
+        "folders" : {
+          "type" : "array",
+          "description" : "The list of queried folders.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFolderFindResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentFolderFindResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried folder."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried folder."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried folder."
+        },
+        "statusSchemeID" : {
+          "type" : "string",
+          "description" : "The status scheme id of the queried folder."
+        },
+        "statusID" : {
+          "type" : "string",
+          "description" : "The status id of the queried folder."
+        },
+        "securitySchemeID" : {
+          "type" : "string",
+          "description" : "The security scheme id of the queried folder."
+        },
+        "currentStatus" : {
+          "type" : "string",
+          "description" : "The status of the queried folder."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried folder."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried folder."
+        }
+      }
+    },
+    "ContentFolderFindRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository id of the folder to find."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the folder to find."
+        },
+        "parentFolderId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The parent folder id of the folder to find."
+        }
+      }
+    },
+    "ClearContentFolderFindResponse" : {
+      "type" : "object",
+      "properties" : {
+        "folders" : {
+          "type" : "array",
+          "description" : "The list of queried folders.",
+          "items" : {
+            "$ref" : "#/definitions/ClearContentFolderFindResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFolderFindResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "string",
+          "description" : "The path of the queried folder."
+        }
+      }
+    },
+    "ClearContentFolderFindRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository id of the folder to find."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the folder to find."
+        },
+        "parentFolderPath" : {
+          "type" : "string",
+          "description" : "The parent folder path of the folder to find."
+        }
+      }
+    },
+    "ClearContentFoldersAddResponse" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "array",
+          "description" : "The list of paths to the created folders.",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentFoldersAddRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The repository id of the new folder."
+        },
+        "parentFolderPath" : {
+          "type" : "string",
+          "description" : "The path to the parent folder."
+        },
+        "name" : {
+          "type" : "array",
+          "description" : "The name of the new folder to create.",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "ContentFoldersAddResponse" : {
+      "type" : "object",
+      "properties" : {
+        "folders" : {
+          "type" : "array",
+          "description" : "The list of created folders.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFolderAddResponse"
+          }
+        }
+      }
+    },
+    "ContentFoldersAddRequest" : {
+      "type" : "object",
+      "properties" : {
+        "contentFolders" : {
+          "type" : "array",
+          "description" : "The list of folders to create.",
+          "items" : {
+            "$ref" : "#/definitions/ContentFolderAddRequest"
+          }
+        }
+      }
+    },
+    "ContentRepoListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "repositories" : {
+          "type" : "array",
+          "description" : "The list of all queried repositories.",
+          "items" : {
+            "$ref" : "#/definitions/ContentRepoListResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentRepoListRequest" : {
+      "type" : "object",
+      "properties" : {
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the repository."
+        }
+      }
+    },
+    "ContentRepoAddResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the created repository."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the created repository."
+        },
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentRepoAddRequest" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the repository to create."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the repository to create."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the repository to create."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the repository to create."
+        },
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the repository to create.",
+          "enum" : [ "FileSystem", "ClearFileSystem" ]
+        }
+      }
+    },
+    "ContentRepoFindResponse" : {
+      "type" : "object",
+      "properties" : {
+        "repositories" : {
+          "type" : "array",
+          "description" : "The list of repositories to find.",
+          "items" : {
+            "$ref" : "#/definitions/ContentRepoFindResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentRepoFindResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried repository."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried repository."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried repository."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried repository."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried repository."
+        },
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the queried repository."
+        },
+        "config" : {
+          "type" : "object",
+          "description" : "The config of the queried repository.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "ContentRepoFindRequest" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the repository to find."
+        }
+      }
+    },
+    "ContentRepoEditResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentRepoEditRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the repository to edit."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the repository to edit."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the repository to edit."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the repository to edit."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the repository to edit."
+        }
+      }
+    },
+    "ContentRepoGetResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried repository."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried repository."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried repository."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried repository."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried repository."
+        },
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the queried repository."
+        },
+        "config" : {
+          "type" : "object",
+          "description" : "The config of the queried repository.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentRepoGetRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the repository."
+        }
+      }
+    },
+    "ContentRepoDeleteResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ContentRepoDeleteRequest" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the deleted repository."
+        }
+      }
+    },
+    "ClearContentRepoGetResponse" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried repository."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried repository."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried repository."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried repository."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried repository."
+        },
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the queried repository."
+        },
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentRepoFindResponse" : {
+      "type" : "object",
+      "properties" : {
+        "repositories" : {
+          "type" : "array",
+          "description" : "The list of repositories to find.",
+          "items" : {
+            "$ref" : "#/definitions/ClearContentRepoFindResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentRepoFindResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried repository."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried repository."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried repository."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried repository."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried repository."
+        },
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the queried repository."
+        }
+      }
+    },
+    "ClearContentRepoListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "repositories" : {
+          "type" : "array",
+          "description" : "The list of all queried repositories.",
+          "items" : {
+            "$ref" : "#/definitions/ClearContentRepoListResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message of this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "ClearContentRepoListResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The id of the queried repository."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "The name of the queried repository."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "The description of the queried repository."
+        },
+        "permissionObjectType" : {
+          "type" : "string",
+          "description" : "The permission object type of the queried repository."
+        },
+        "permissionObjectID" : {
+          "type" : "string",
+          "description" : "The permission object id of the queried repository."
+        },
+        "provider" : {
+          "type" : "string",
+          "description" : "The provider of the queried repository."
+        }
+      }
+    },
+    "MimeMappingGetResponse" : {
+      "type" : "object",
+      "properties" : {
+        "extension" : {
+          "type" : "string",
+          "description" : "The extension of this mime mapping."
+        },
+        "mimeType" : {
+          "type" : "string",
+          "description" : "The mime type of this mime mapping."
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "MimeMappingGetRequest" : {
+      "type" : "object",
+      "properties" : {
+        "extension" : {
+          "type" : "string",
+          "description" : "The extension of this mime mapping."
+        }
+      }
+    },
+    "MimeMappingEditResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "MimeMappingEditRequest" : {
+      "type" : "object",
+      "properties" : {
+        "extension" : {
+          "type" : "string",
+          "description" : "The extension of the mime mapping to be updated."
+        },
+        "mimetype" : {
+          "type" : "string",
+          "description" : "The mime type of of the mime mapping to be updated."
+        }
+      }
+    },
+    "MimeMappingDeleteResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "MimeMappingDeleteRequest" : {
+      "type" : "object",
+      "properties" : {
+        "extension" : {
+          "type" : "string",
+          "description" : "The extension of the mime mapping to be deleted."
+        }
+      }
+    },
+    "MimeMappingListResponse" : {
+      "type" : "object",
+      "properties" : {
+        "mappings" : {
+          "type" : "array",
+          "description" : "The list of queried mime mappings.",
+          "items" : {
+            "$ref" : "#/definitions/MimeMappingListResponseItem"
+          }
+        },
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "MimeMappingListResponseItem" : {
+      "type" : "object",
+      "properties" : {
+        "extension" : {
+          "type" : "string",
+          "description" : "The extension of the mime mapping."
+        },
+        "mimeType" : {
+          "type" : "string",
+          "description" : "The mime type of of the mime mapping."
+        }
+      }
+    },
+    "MimeMappingAddResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "description" : "The message returned by this request.",
+          "$ref" : "#/definitions/RestMessage"
+        },
+        "success" : {
+          "type" : "boolean",
+          "description" : "The flag indicating a successful or faulty request."
+        }
+      }
+    },
+    "MimeMappingAddRequest" : {
+      "type" : "object",
+      "properties" : {
+        "extension" : {
+          "type" : "string",
+          "description" : "The name of the extension."
+        },
+        "mimetype" : {
+          "type" : "string",
+          "description" : "The name of the mime type."
+        }
+      }
+    },
+    "UploadPermissionFileResponse" : {
+      "type" : "object",
+      "required" : [ "msg" ],
+      "properties" : {
+        "msg" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CheckboxCharacteristic" : {
+      "type" : "object",
+      "required" : [ "defaultValue", "description", "name", "technicalName" ],
+      "properties" : {
+        "technicalName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "defaultValue" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "DropDownCharacteristic" : {
+      "type" : "object",
+      "required" : [ "defaultValue", "description", "name", "technicalName", "values" ],
+      "properties" : {
+        "technicalName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "values" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "defaultValue" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MultiSelectCharacteristic" : {
+      "type" : "object",
+      "required" : [ "defaultValue", "description", "name", "technicalName", "values" ],
+      "properties" : {
+        "technicalName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "values" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "defaultValue" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PluginPermissionFile" : {
+      "type" : "object",
+      "required" : [ "checkboxCharacteristics", "dropDownCharacteristics", "multiSelectCharacteristics", "textfieldCharacteristics" ],
+      "properties" : {
+        "checkboxCharacteristics" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CheckboxCharacteristic"
+          }
+        },
+        "textfieldCharacteristics" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TextFieldCharacteristic"
+          }
+        },
+        "dropDownCharacteristics" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DropDownCharacteristic"
+          }
+        },
+        "multiSelectCharacteristics" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MultiSelectCharacteristic"
+          }
+        }
+      }
+    },
+    "TextFieldCharacteristic" : {
+      "type" : "object",
+      "required" : [ "defaultValue", "description", "name", "technicalName" ],
+      "properties" : {
+        "technicalName" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "defaultValue" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DownloadPermissionFileResponse" : {
+      "type" : "object",
+      "required" : [ "data" ],
+      "properties" : {
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "format" : "byte"
+            }
+          }
+        },
+        "msg" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DownloadPermissionFileRequest" : {
+      "type" : "object"
+    }
+  },
+  "externalDocs" : {
+    "url" : "https://community.simplifier.io/doc/current-release/"
+  }
+}

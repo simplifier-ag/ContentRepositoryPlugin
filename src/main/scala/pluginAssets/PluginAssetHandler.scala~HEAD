@@ -1,0 +1,37 @@
+package pluginAssets
+
+import io.appServer.plugins.HttpPostResponse
+import io.appServer.plugins.helper.PluginLogger
+import io.appServer.plugins.slots.ChunkedAssetHandler
+import io.contentrepoplugin.manager.ContentManager
+import pluginFramework.Globals
+
+import scala.util.{Failure, Success}
+
+/**
+ * Asset Handler for ContentRepo Plugin.
+ * @author Christian Simon
+ */
+class PluginAssetHandler extends ChunkedAssetHandler with PluginLogger {
+
+  override def chunkHelper = Globals.chunkHelper
+
+  val downloadPattern = "download/([0-9]+).[a-zA-Z0-9]+".r
+
+  def handleAsset(path: String): Option[HttpPostResponse] =
+    path match {
+      case downloadPattern(id) =>
+        val downloadData = ContentManager.getPublicFile(id.toInt)
+        downloadData match {
+          case Failure(e) =>
+            log.warn(s"Error downloading file $id", e)
+            None
+          case Success(None)                     => None
+          case Success(Some((file, data, mime))) => Some(HttpPostResponse(mime, data))
+        }
+      case _ => None
+
+    }
+
+}
+
