@@ -73,36 +73,6 @@ RUN /tmp/contentrepoplugin/setup.sh /opt/simplifier
 ```
 
  
-There is only one additional step to be done before building and testing:
-
-
-### Additional Step: Adding the Oracle JDBC Driver
-- in the source tree: create a lib directory
-- then copy the Oracle JDBC driver version 23.3 to this directory
-- the sourcetree then looks like this:
-```
-├── build
-│   └── artifacts
-│       ├── assets
-│       │   ├── contentRepoPlugin.arg
-│       │   └── contentRepoPlugin.conf
-│       ├── build.sh
-│       ├── Dockerfile
-│       └── setup.sh
-├── build.sbt
-├── lib
-│   └── ojdbc8.jar
-├── LICENSE
-├── project
-├── README.md
-├── src
-│   ├── main   ...
-│   └── test   ...
-└── version.sh
-
-```
-
- 
 
 ## Local Deployment
 
