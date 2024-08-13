@@ -78,6 +78,33 @@ RUN /tmp/contentrepoplugin/setup.sh /opt/simplifier
 
 The build runs the process with SBT locally, Simplifier's plugin registration port and the plugin communication port must be accessible locally.
 
+There is only one additional step to be done before building and testing:
+
+### Additional Step: Adding the Oracle JDBC Driver
+- in the source tree: create a lib directory
+- then copy the Oracle JDBC driver version 23.3 to this directory
+- the sourcetree then looks like this:
+```
+├── build
+│   └── artifacts
+│       ├── assets
+│       │   ├── contentRepoPlugin.arg
+│       │   └── contentRepoPlugin.conf
+│       ├── build.sh
+│       ├── Dockerfile
+│       └── setup.sh
+├── build.sbt
+├── lib
+│   └── ojdbc8.jar
+├── LICENSE
+├── project
+├── README.md
+├── src
+│   ├── main   ...
+│   └── test   ...
+└── version.sh
+
+```
 
 ### Prerequisites
 
