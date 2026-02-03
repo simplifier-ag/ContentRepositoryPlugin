@@ -1,4 +1,8 @@
-FROM simplifierag/simplifier-assembly:main_0.1.0 AS build
+FROM simplifierag/simplifier-assembly:graal25_2.0.9 AS build
+
+# guuess, that this is not used at all!
+
+RUN echo "Not used!"
 
 WORKDIR /build
 COPY . /build/
