@@ -27,7 +27,7 @@ lazy val contentRepoPlugin = (project in file("."))
       "com.h2database"          %  "h2"                      % "1.3.166"     withSources() withJavadoc(),
       "org.scalatest"           %% "scalatest"               % "3.1.4"       withSources() withJavadoc(),
       "org.mockito"             %% "mockito-scala"           % "1.17.7"     % "test"                     ,
-      "io.github.simplifierio"  %% "simplifier-plugin-base"  % "2.0.0"       withSources()
+      "io.github.simplifierio"  %% "simplifier-plugin-base"  % "2.0.1"       withSources()
     )
   )
 
