@@ -1,9 +1,10 @@
 ThisBuild / organization := "io.simplifier"
 ThisBuild / version := sys.env.get("VERSION").getOrElse("NA")
-ThisBuild / scalaVersion := "2.12.15"
+ThisBuild / scalaVersion := "2.12.20"
 
 ThisBuild / useCoursier := true
 
+ThisBuild / libraryDependencySchemes += "org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always
 
 
 lazy val contentRepoPlugin = (project in file("."))
@@ -21,12 +22,12 @@ lazy val contentRepoPlugin = (project in file("."))
         oldStrategy(x)
     },
     libraryDependencies ++= Seq(
-      "mysql"                   %  "mysql-connector-java"    % "5.1.47"                                  ,
-      "com.oracle.database.jdbc" % "ojdbc11-production"      % "23.4.0.24.05" pomOnly() exclude("com.oracle.database.xml", "xmlparserv2"),
+      "com.mysql" % "mysql-connector-j" % "8.4.0" exclude("com.google.protobuf", "protobuf-java"),
+      "com.oracle.database.jdbc" % "ojdbc11-production" % "23.4.0.24.05" pomOnly() exclude("com.oracle.database.xml", "xmlparserv2"),
       "com.h2database"          %  "h2"                      % "1.3.166"     withSources() withJavadoc(),
       "org.scalatest"           %% "scalatest"               % "3.1.4"       withSources() withJavadoc(),
       "org.mockito"             %% "mockito-scala"           % "1.17.7"     % "test"                     ,
-      "io.github.simplifier-ag" %% "simplifier-plugin-base"  % "1.0.3"       withSources()
+      "io.github.simplifier-ag" %% "simplifier-plugin-base"  % "1.0.4"       withSources()
     )
   )
 
