@@ -92,11 +92,9 @@ object SquerylInit extends Logging {
 
     val tp = dbRaw.get("table_prefix").map (_.asInstanceOf[String])
 
-    val tls = dbRaw.get("tls") match {
-      case Some (b: java.lang.Boolean) => b.booleanValue
-      case Some (_) => throw new IllegalArgumentException ("tls must be a boolean value, if configured")
-      case None => false
-    }
+    // dbRaw is unwrapped and no longer benefits from Config's string-to-boolean coercion, so env var
+    // overrides (e.g. tls: ${?MYSQL_TLS}) would fail the pattern match above unless read via getBoolean
+    val tls = if (config.hasPath("database.tls")) config.getBoolean("database.tls") else false
 
     vendor = db("dbms")
     val parsedConfig = vendor match {
